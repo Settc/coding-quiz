@@ -70,25 +70,41 @@ var timer = document.getElementById("timer")
 var score = document.getElementById("score")
 
 var revealed = document.querySelectorAll(".revealed")
-
-
-
-
-
-
-
 var highScores = 0
+timer.innerHTML = 60;
 
-//Need a start button
-startButton.addEventListener("click", startGame() {
-    
-})
 
 // WHEN I click the start button
-function startGame() {
+startButton.addEventListener("click", function()
+
+
+// THEN a timer starts 
+
+    
+{   
+    timer.innerHTML = 60;
+
     for (var i = 0; i < revealed.length; i++) {
-        revealed[i].hidden = true
+        revealed[i].setAttribute("style", "display:none")
     }
 
-// THEN a timer starts and I am presented with a question
+    setInterval(updateTimer, 1000);
+    var startingTime = 1
+    var time = startingTime * 60;
+
+function updateTimer() {
+    
+    var seconds = time % 60;
+    timer.innerHTML = `${seconds}`;
+    time--;
+
+    if (!time) {
+        return
+    }
+    
+    
+    
 }
+
+//and I am presented with a question
+})
