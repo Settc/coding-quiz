@@ -3,8 +3,7 @@
 // SO THAT I can gauge my progress compared to my peers
 
 
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
+
 // WHEN I answer a question
 // THEN I am presented with another question
 // WHEN I answer a question incorrectly
@@ -16,10 +15,10 @@
 
 
 //Initialize stage:
-//Display to the user the game name and list of rules/guidelines
+
 //Display the high score list
     //If no high scores, say "No high scores recorded!"
-//Need a start button
+
 //Need a timer starting at 60, that will countdown
 //Need a list of questions that will post in a random order
 
@@ -60,4 +59,36 @@
 //It will persistently store your initials and score, and rank them
 //Need two buttons, one to start over, one to clear high scores
 
+var question = document.querySelector(".question");
+var answerOne = document.getElementById("answerOne")
+var answerTwo = document.getElementById("answerTwo")
+var answerThree = document.getElementById("answerThree")
+var answerFour = document.getElementById("answerFour")
 
+var startButton = document.getElementById("startButton")
+var timer = document.getElementById("timer")
+var score = document.getElementById("score")
+
+var revealed = document.querySelectorAll(".revealed")
+
+
+
+
+
+
+
+var highScores = 0
+
+//Need a start button
+startButton.addEventListener("click", startGame() {
+    
+})
+
+// WHEN I click the start button
+function startGame() {
+    for (var i = 0; i < revealed.length; i++) {
+        revealed[i].hidden = true
+    }
+
+// THEN a timer starts and I am presented with a question
+}
