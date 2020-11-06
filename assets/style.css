@@ -1,0 +1,13 @@
+body {
+    margin-bottom: 0px;
+}
+
+.nested-container {
+    border:2px solid black;
+    min-height: 80vh;
+    
+}
+
+#gameOver {
+    font-size: xx-large;
+}
