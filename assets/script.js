@@ -1,31 +1,4 @@
-// AS A coding boot camp student
-// I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-// SO THAT I can gauge my progress compared to my peers
-
-//Initialize stage:
-
-//Display the high score list
-    //If no high scores, say "No high scores recorded!"
-
-//Need a timer starting at 60, that will countdown
-//Need a list of questions that will post in a random order
-
-//Game stage:
-//Timer starts counting down, decrementing every second
-//Post question in game field
-    //Listen for user clicks on any choice in the list
-//When the choice is clicked, it moves onto the next question
-    //If choice is correct
-        //Game will inform user you were correct, then post next question
-    //else user is informed of incorrect choice, and the timer will decrement by 5 seconds
-//When the timer runs out, the game will end
-    //Check for timer expiration, 
-
-//End game steps
-
-//The game will ask you for your initials
-//It will persistently store your initials and score, and rank them
-//Need two buttons, one to start over, one to clear high scores
+//Declare global variables and attach to HTML elements
 var list = document.getElementById("list")
 var question = document.getElementById("question")
 var answers = document.getElementById("answers")
@@ -40,15 +13,12 @@ var score = document.getElementById("score")
 var gameOver = document.getElementById("gameOver")
 var intro = document.getElementById("introduction")
 var play = document.getElementById("play")
-// var display = document.querySelectorAll(".show[data-visible]")
+var scoreList = document.getElementById("scoreList")
 
-var setTimer
-var seconds
-var highScores = 0
-timer.innerHTML = 0
+var highScores = localStorage.getItem("highScore")
 var answeredQuestions = 0
 
-
+//This array lists all the questions that will be randomly drawn and appended onto the html
 
 var questionList = [
 
@@ -144,24 +114,41 @@ var questionList = [
 },
 ]
 
-setTimer = setInterval(updateTimer, 1000)
-    var startingTime = .5
-    var time = startingTime * 60
+//These are the timer settings, setting the starting time and then going through an if statement in which the user 
+//  to either see the high scores or go back to the main menu
 
+timer.innerHTML = 0
+var startingTime = .5
+var time = startingTime * 60
 
 function updateTimer() {
     
-    seconds = time % 60;
-    timer.innerHTML = `${seconds}`
-    time--;
+    
+    var setTimer = setInterval(function(){
 
-    if (time < 0 || answeredQuestions === 10 ) {
+    seconds = time % 60
+    timer.innerHTML = `${seconds}`
+    time--
+
+    if (time <= 0) {
         clearInterval(setTimer);
-        confirm(`Time's up! Your score was ${score.innerHTML}` )
+        var timeUp = confirm(`Time's up! Your score was ${score.innerHTML}! Would you like to see High Score?` )
+        if (timeUp) {
+
+
+        }   else {
+            time = 30
+            score = 0
+            setVisible()
+                     
+            
+        }
         return;
     }
+}, 1000)
 }
 
+//This function toggles the visibility of certain elements for the pre-button-clicked and post-button-clicked stages of the game
 
 function setVisible() {
     intro.classList.toggle("is-visible")
@@ -171,13 +158,15 @@ function setVisible() {
         
 }
 
+//This function chooses a random question with a common Math.random and then appends into the appropriate elements
+
 function randomQuestion() {
     nextQuestion = questionList[Math.floor(Math.random() * questionList.length)];    
     
-    if (nextQuestion.used === true) {
-        randomQuestion()
-        return
-    }
+    // if (nextQuestion.used === true) {
+        
+        
+    // }   
 
     question.textContent = nextQuestion.question
     answerOne.textContent = nextQuestion.answerOne
@@ -186,7 +175,9 @@ function randomQuestion() {
     answerFour.textContent = nextQuestion.answerFour
     nextQuestion.used = true
 }
+    
 
+//This listens for a click on the questions and determines whether the choice was correct or not
     list.addEventListener("click", function(event) {
           
         var attrId = event.target.getAttribute("id")
@@ -194,11 +185,10 @@ function randomQuestion() {
             score.textContent++
         } else  {
             alert("Incorrect.")
-            clearInterval(setTimer)
-            timer.innerHTML -= 5
-            seconds -= 5
-            // updateTimer()
-            randomQuestion();
+            time -= 5
+            randomQuestion()
+            
+            
             
         }
         
@@ -212,39 +202,17 @@ function randomQuestion() {
         randomQuestion()
     
 })
-    
+   
+//Here, an event listener is declared and appropriate functions are called in order to start the quiz
 
-
-
-
-// WHEN I click the start button
 startButton.addEventListener("click", function()
 
-
-// THEN a timer starts     
 {   
   
-
 updateTimer()
-//and I am presented with a question
 
 setVisible()
 
 randomQuestion()
 
 })
-
-// WHEN I answer a question
-
-
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
-
-
-
-

@@ -14,7 +14,7 @@
         
        
     
-    <div class="container-sm nested-container mt-3 mb-5 bg-white">
+    <div class="container nested-container mt-3 mb-5 bg-white">
         <nav class="navbar-light bg-warning px-2">
             <div class="row">
                 <div class="col display-1"><h1>Coding Quiz</h1></div>
@@ -38,14 +38,20 @@
                 </ul>
                 <hr>
 
-                <h2 class="ml-5">High Score:<span id="lastScore">0</span></h2>
+                <h2 id="high-score" class="ml-5">High Score:</h2>
+                <ol class="" id="scoreList">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
 
-                <button id="startButton" class="btn btn-info toggle-content is-visible ml-5 px-5 ">Start Game</button>
+                <button id="startButton" class="btn btn-info toggle-content is-visible">Start Game</button>
 
             </div>
         </div>
     
-            <confirm id="gameOver"></h2>
+            <h2 id="gameOver">Game Over</h2>
+
         <div id="play" class="toggle-content">       
             <div class="row">
                 <div class="col">
@@ -59,7 +65,7 @@
                         <li id="answerTwo" class="d-block btn btn-outline-secondary m-1"></li>
                         <li id="answerThree" class="d-block btn btn-outline-secondary m-1"></li>
                         <li id="answerFour" class="d-block btn btn-outline-secondary m-1"></li>
-                        <!-- <li id="correct" class="revealed"></li> -->
+                        
                     </ol>
                 </div>
             </div>
