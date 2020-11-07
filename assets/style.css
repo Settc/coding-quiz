@@ -8,6 +8,16 @@ body {
     
 }
 
+.toggle-content {
+    display: none;
+}
+
+.toggle-content.is-visible {
+    display: block;
+}
+
+
+
 #gameOver {
     font-size: xx-large;
 }

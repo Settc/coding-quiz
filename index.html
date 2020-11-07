@@ -25,9 +25,9 @@
             </div>
           </nav>
         
-        <div id="introduction" class="row" data-display="true">
+        <div id="introduction" class="row toggle-content is-visible">
             <div class="col">
-                <button id="startButton" class="btn btn-info">Start Game</button>
+                
                 <h2>Instructions</h2>
                 <ul>
                     <li>The timer will start, and you will be presented with a question</li>
@@ -36,30 +36,35 @@
                     <li>When time runs out, it's game over!</li>
                     <li>Try to get the high score!</li>
                 </ul>
+                <hr>
 
-                <h2>Previous Score:<span id="lastScore">0</span></h2>
+                <h2 class="ml-5">High Score:<span id="lastScore">0</span></h2>
+
+                <button id="startButton" class="btn btn-info toggle-content is-visible ml-5 px-5 ">Start Game</button>
 
             </div>
         </div>
-        <div>
-            <h2 id="gameOver"></h2>
-        </div>        
-        <div class="row">
-            <div class="col">
-                <h2 id="question" class="d-block" data-display="false">Question goes here</h2>
+    
+            <confirm id="gameOver"></h2>
+        <div id="play" class="toggle-content">       
+            <div class="row">
+                <div class="col">
+                    <h2 id="question" class="d-block">Question goes here</h2>
+                </div>
+            </div>
+            <div id="answers" class="row toggle-content">
+                <div class="col">
+                    <ol id="list" class="float-left mt-5">
+                        <li id="answerOne" class="d-block btn btn-outline-secondary m-1"></li>
+                        <li id="answerTwo" class="d-block btn btn-outline-secondary m-1"></li>
+                        <li id="answerThree" class="d-block btn btn-outline-secondary m-1"></li>
+                        <li id="answerFour" class="d-block btn btn-outline-secondary m-1"></li>
+                        <!-- <li id="correct" class="revealed"></li> -->
+                    </ol>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <ol id="list" class="float-left mt-5" data-display="false">
-                    <li id="answerOne" class="d-block btn btn-outline-secondary m-1"></li>
-                    <li id="answerTwo" class="d-block btn btn-outline-secondary m-1"></li>
-                    <li id="answerThree" class="d-block btn btn-outline-secondary m-1"></li>
-                    <li id="answerFour" class="d-block btn btn-outline-secondary m-1"></li>
-                    <!-- <li id="correct" class="revealed"></li> -->
-                </ol>
-            </div>
-        </div>
+        
     </div>
     
     </div>

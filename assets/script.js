@@ -28,26 +28,27 @@
 //Need two buttons, one to start over, one to clear high scores
 var list = document.getElementById("list")
 var question = document.getElementById("question")
+var answers = document.getElementById("answers")
 var answerOne = document.getElementById("answerOne")
 var answerTwo = document.getElementById("answerTwo")
 var answerThree = document.getElementById("answerThree")
 var answerFour = document.getElementById("answerFour")
 var correct = document.getElementById("correct")
-
 var startButton = document.getElementById("startButton")
 var timer = document.getElementById("timer")
 var score = document.getElementById("score")
 var gameOver = document.getElementById("gameOver")
+var intro = document.getElementById("introduction")
+var play = document.getElementById("play")
+// var display = document.querySelectorAll(".show[data-visible]")
 
-var revealed = document.querySelectorAll(".revealed")
+var setTimer
+var seconds
 var highScores = 0
 timer.innerHTML = 0
+var answeredQuestions = 0
 
-var nextQuestion = 0
 
-function setData() {
-
-}
 
 var questionList = [
 
@@ -58,6 +59,7 @@ var questionList = [
         answerThree: "forEach",
         answerFour: "array",
         correctAnswer: "answerTwo",
+        used: false,
 },
     {
     question: "Inside which HTML element do we put the Javascript?",
@@ -66,6 +68,7 @@ var questionList = [
         answerThree: "<script>",
         answerFour: "<js>",
         correctAnswer: "answerThree",
+        used: false,
 },
     {
     question: "Which built-in method returns the character at the specified index?",
@@ -74,6 +77,7 @@ var questionList = [
         answerThree: "charAt()",
         answerFour: "None of the above",
         correctAnswer: "answerThree",
+        used: false,
 },
     {
     question: "How to write an IF statement in JavaScript?",
@@ -82,6 +86,7 @@ var questionList = [
         answerThree: "if i == 5 then",
         answerFour: "if (i === 5)",
         correctAnswer: "answerFour",
+        used: false,
 },
     {
     question: "What is the 'exactly equals to' operator?",
@@ -90,7 +95,8 @@ var questionList = [
         answerThree: "!=",
         answerFour: "none of the above",
         correctAnswer: "answerFour",
-},
+        used: false,
+},      
     {
     question: "What keyword exits a function?",
         answerOne: "return",
@@ -98,6 +104,7 @@ var questionList = [
         answerThree: "escape",
         answerFour: "none of the above",
         correctAnswer: "answerOne",
+        used: false,
 },
     {
     question: "JavaScript files have an extension of ___?",
@@ -106,6 +113,7 @@ var questionList = [
         answerThree: ".javascript",
         answerFour: ".xml",
         correctAnswer: "answerTwo",
+        used: false,
 },
     {
     question: "isNaN() evaluates an argument to determine if given value is...?",
@@ -114,6 +122,7 @@ var questionList = [
         answerThree: "Not a new object",
         answerFour: "None of the above",
         correctAnswer: "answerOne",
+        used: false,
 },
     {
     question: "Which of the below is used in JavaScript to insert special characters?",
@@ -122,6 +131,7 @@ var questionList = [
         answerThree: "\\",
         answerFour: "%",
         correctAnswer: "answerThree",
+        used: false,
 },
     {
     question: "Code between a set of curly braces is called a ___ of code",
@@ -130,41 +140,78 @@ var questionList = [
         answerThree: "Container",
         answerFour: "Block",
         correctAnswer: "answerFour",
+        used: false,
 },
 ]
+
+setTimer = setInterval(updateTimer, 1000)
+    var startingTime = .5
+    var time = startingTime * 60
+
+
+function updateTimer() {
+    
+    seconds = time % 60;
+    timer.innerHTML = `${seconds}`
+    time--;
+
+    if (time < 0 || answeredQuestions === 10 ) {
+        clearInterval(setTimer);
+        confirm(`Time's up! Your score was ${score.innerHTML}` )
+        return;
+    }
+}
+
+
+function setVisible() {
+    intro.classList.toggle("is-visible")
+    play.classList.toggle("is-visible")
+    answers.classList.toggle("is-visible")
+    
+        
+}
 
 function randomQuestion() {
     nextQuestion = questionList[Math.floor(Math.random() * questionList.length)];    
     
+    if (nextQuestion.used === true) {
+        randomQuestion()
+        return
+    }
+
     question.textContent = nextQuestion.question
     answerOne.textContent = nextQuestion.answerOne
     answerTwo.textContent = nextQuestion.answerTwo
     answerThree.textContent = nextQuestion.answerThree
     answerFour.textContent = nextQuestion.answerFour
-    
+    nextQuestion.used = true
 }
 
     list.addEventListener("click", function(event) {
           
         var attrId = event.target.getAttribute("id")
         if (attrId === nextQuestion.correctAnswer) {
-            score.textContent++; 
+            score.textContent++
         } else  {
-            alert("incorrect")
+            alert("Incorrect.")
+            clearInterval(setTimer)
+            timer.innerHTML -= 5
+            seconds -= 5
+            // updateTimer()
             randomQuestion();
+            
         }
-
-            // randomQuestion();
-
-            question.textContent = ""
-            answerOne.textContent = ""
-            answerTwo.textContent = ""
-            answerThree.textContent = ""
-            answerFour.textContent = ""
-
-            randomQuestion();
         
-    })
+        question.textContent = ""
+        answerOne.textContent = ""
+        answerTwo.textContent = ""
+        answerThree.textContent = ""
+        answerFour.textContent = ""
+      
+
+        randomQuestion()
+    
+})
     
 
 
@@ -176,33 +223,12 @@ startButton.addEventListener("click", function()
 
 // THEN a timer starts     
 {   
-    for (var i = 0; i < revealed.length; i++) {
-        revealed[i].setAttribute("style", "display:none")
-    }
+  
 
-    var setTimer = setInterval(updateTimer, 1000);
-    var startingTime = 1
-    var time = startingTime * 60;
-
-function updateTimer() {
-    
-    var seconds = time % 60;
-    timer.innerHTML = `${seconds}`;
-    time--;
-
-    if (time < 0) {
-        clearInterval(setTimer);
-        gameOver.innerText = "GAME OVER"
-        return;
-    }
-    
-    
-    
-}
-
+updateTimer()
 //and I am presented with a question
 
-
+setVisible()
 
 randomQuestion()
 
