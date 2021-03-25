@@ -3,85 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Coding Quiz</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-                                                                                        
-    <div class="container bg-dark px-5 pb-1 pt-1">
-        
-        
-       
-    
-    <div class="container nested-container mt-3 mb-5 bg-white">
-        <nav class="navbar-light bg-warning px-2">
-            <div class="row">
-                <div class="col display-1"><h1>Coding Quiz</h1></div>
+<body class="bg-washed-light relative">
+    <div class="mw7 vh-75 relative top-2 mt5 ba br4 center ph3 ph5-ns tc shadow-5 pv5 bg-black-30 o-70 washed-green mb5"
+         id="start-screen">
+        <h1 class="fw6 f3 f2-ns lh-title mt0 mb2 pb2 bg-navy br2 pt2 bb">
+          Javascript coding quiz
+        </h1>
+        <h2 class="fw2 f4 lh-copy black-80 b mb3 ">
+          You have 60 seconds to complete this 10 question quiz.
+        </h2>
+        <p class="fw1 f5 mb3 pb3 black-70 b">
+          Start the game, or view high scores:
+        </p>
+        <div>
+          <input 
+            type="button"
+            class="f6 br-pill bg-navy no-underline washed-green ba shadow-4 grow pv2 ph3 dib ml3 mr2"
+            id="playBtn"
+            value="Play"
+            >
+            
+        </input>
+          <input 
+            type="button"
+            class="f6 br-pill black-80 no-underline shadow-4 ba grow pv2 ml1 mb4 ph3 dib"
+            id="scoresBtn"
+            value="Score"
+            >
+            
+        </input>
+        </div>
+        <div 
+            class="bg-black-50 ba vh-50 o-70 mt3 br3"
+            id="game">
+            
+            <div class="ml2 mv2 dib fl bg-dark-green code b b--black-60 yellow ba br4 h3 w3 tc">
+              SCORE
+
+              <h2 class="mv2 yellow" id="score"></h2>                  
             </div>
-            <div class="row">
-                <div class="col navbar-text"><h2>Score: <span id="score">0</span></h2></div>
-                <div class="col navbar-text"><h2>Timer: <span id="timer">60</span></h2></div>
+
+            <div class="ml2 mv2 dib fl bg-dark-green code b b--black-60 yellow ba br4 h3 w3 tc">
+              TIME
+
+              <h2 class="mv2 yellow" id="time"></h2>                  
             </div>
-          </nav>
-        
-        <div id="introduction" class="row toggle-content is-visible">
-            <div class="col">
+            
+            <h2 
+                id="question-field"
+                class="mt6 w-75 center"
+            >
+          </h2>
+
+            <div id="correct">
+
+            </div>
+            
+            <ul class="list pl0 ml0 mt5 center mw6 mb2 ba b--light-silver br3">
+                <li class="pa4 bb b--light-silver dn dim" id="answerOne"></li>
+                <li class="pa4 bb b--light-silver dn dim" id="answerTwo"></li>
+                <li class="pa4 bb b--light-silver dn dim" id="answerThree"></li>
+                <li class="pa4 bb b--light-silver dn dim" id="answerFour"></li>
                 
-                <h2>Instructions</h2>
-                <ul>
-                    <li>The timer will start, and you will be presented with a question</li>
-                    <li>Choose the right answer, and your score will go up</li>
-                    <li>Get it wrong, and you will lose 5 seconds</li>
-                    <li>When time runs out, it's game over!</li>
-                    <li>Try to get the high score!</li>
-                </ul>
-                <hr>
+            </ul>
 
-                <h2 id="high-score" class="ml-5">High Score:</h2>
-                <ol class="" id="scoreList">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ol>
-
-                <button id="startButton" class="btn btn-info toggle-content is-visible">Start Game</button>
-
+            
+            <div class="bg-red ba absolute mb6 mr2 bottom-2 pb3 ph7 center shadow-5 dn br3 z-max"
+                  id="scoreDisplay">
+      
+                <h2>HIGH SCORES</h2>
+                <h3 class="mr5 di" id="showInitials"></h3>
+                <h3 class="di mr2" id="showScore"></h3>
+                <button value="close" class="br4 mt6 ml4 db shadow-5" id="closeScore">CLOSE</button>
             </div>
         </div>
+      </div>
     
-            <h2 id="gameOver">Game Over</h2>
-
-        <div id="play" class="toggle-content">       
-            <div class="row">
-                <div class="col">
-                    <h2 id="question" class="d-block">Question goes here</h2>
-                </div>
-            </div>
-            <div id="answers" class="row toggle-content">
-                <div class="col">
-                    <ol id="list" class="float-left mt-5">
-                        <li id="answerOne" class="d-block btn btn-outline-secondary m-1"></li>
-                        <li id="answerTwo" class="d-block btn btn-outline-secondary m-1"></li>
-                        <li id="answerThree" class="d-block btn btn-outline-secondary m-1"></li>
-                        <li id="answerFour" class="d-block btn btn-outline-secondary m-1"></li>
-                        
-                    </ol>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+    <script src="assets/quiz.js"></script>
+      
+                                                                                         
     
-    </div>
-       
-        
-        
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>  
-    <script src="assets/script.js"></script>
 </body>
 </html>

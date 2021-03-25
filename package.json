@@ -1,0 +1,23 @@
+{
+  "name": "coding-quiz",
+  "version": "1.0.0",
+  "description": "In this quiz game, you will be asked 10 questions about JavaScript and\r    you have only 30 seconds to answer them all. Should you answer incorrectly, you will recieve a 5 second penalty.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Settc/coding-quiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Settc/coding-quiz/issues"
+  },
+  "homepage": "https://github.com/Settc/coding-quiz#readme",
+  "dependencies": {
+    "tachyons": "^4.12.0"
+  }
+}
