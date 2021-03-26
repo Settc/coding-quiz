@@ -1,5 +1,5 @@
 # Javascript Quiz Game
-
+Here's the deployed link: https://settc.github.io/coding-quiz/
 
 ## Introduction
    In this quiz game, you will be asked 10 questions about JavaScript and
